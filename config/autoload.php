@@ -1,14 +1,11 @@
 <?php
 
 /**
- * Form recipients.
- * 
- * Copyright (C) 2015 Luger95
- * 
- * @package   Contao\LexFormRecipients
- * @author    Luger95 <normand-alexandre@orange.fr>
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
- * @copyright Luger95 2015
+ * Contao Open Source CMS
+ *
+ * Copyright (c) 2005-2015 Leo Feyer
+ *
+ * @license LGPL-3.0+
  */
 
 
@@ -17,7 +14,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'Contao\LexFormRecipients',
+	'Contao',
 ));
 
 
@@ -26,10 +23,6 @@ ClassLoader::addNamespaces(array
  */
 ClassLoader::addClasses(array
 (
-	// Forms
-	'Contao\LexFormRecipients'             => 'system/modules/formrecipients/forms/LexFormRecipients.php',
-	
 	// Classes
-	'Contao\LexFormRecipients\Recipients'	=> 'system/modules/formrecipients/classes/Recipients.php',
+	'Contao\LexFormRecipients\LexFormRecipients' => 'system/modules/LexFormRecipients/classes/LexFormRecipients.php',
 ));
-

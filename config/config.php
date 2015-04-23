@@ -15,9 +15,9 @@
 /**
  * Form fields
  */
-$GLOBALS['TL_FFL']['recipients'] = 'FormRecipients';
+$GLOBALS['TL_FFL']['recipients'] = 'LexFormRecipients';
 
 /**
  * Callback
  */
-$GLOBALS['TL_HOOKS']['processFormData'][] = array('Recipients', 'processFormData');
+$GLOBALS['TL_HOOKS']['processFormData'][] = array('LexFormRecipients', 'processFormData');

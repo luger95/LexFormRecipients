@@ -22,7 +22,7 @@ namespace Contao;
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  * @copyright Luger95 2015
  */
-class FormRecipients extends \FormSelectMenu
+class LexFormRecipients extends \FormSelectMenu
 {
 
     /**
