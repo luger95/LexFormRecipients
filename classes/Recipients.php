@@ -176,6 +176,9 @@ class Recipients extends \Controller
 
             $uploaded = strlen(trim($uploaded)) ? "\n\n---\n" . $uploaded : '';
 
+            if(strpos($recipients[0],',') !== FALSE)
+                $recipients = array_map('trim',explode(',', $recipients[0]));
+
             // Send e-mail
             $email->text = \String::decodeEntities(trim($message)) . $uploaded . "\n\n";
             $email->sendTo($recipients);
