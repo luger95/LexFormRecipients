@@ -20,4 +20,4 @@ $GLOBALS['TL_FFL']['recipients'] = 'LexFormRecipients';
 /**
  * Callback
  */
-$GLOBALS['TL_HOOKS']['processFormData'][] = array('LexFormRecipients', 'processFormData');
+$GLOBALS['TL_HOOKS']['processFormData'][] = array('Recipients', 'processFormData');

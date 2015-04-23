@@ -14,7 +14,7 @@
  */
 ClassLoader::addNamespaces(array
 (
-	'Contao',
+	'Contao\LexFormRecipients',
 ));
 
 
@@ -24,5 +24,8 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Classes
-	'Contao\LexFormRecipients\LexFormRecipients' => 'system/modules/LexFormRecipients/classes/LexFormRecipients.php',
+	'Contao\LexFormRecipients\Recipients' => 'system/modules/LexFormRecipients/classes/Recipients.php',
+
+	// Forms
+	'Contao\LexFormRecipients'            => 'system/modules/LexFormRecipients/forms/LexFormRecipients.php',
 ));

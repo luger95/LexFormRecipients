@@ -21,7 +21,7 @@ namespace Contao\LexFormRecipients;
  * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
  * @copyright Luger95 2015
  */
-class LexFormRecipients extends \Controller
+class Recipients extends \Controller
 {
     /**
      * Send emails if form contains recipients fields.
