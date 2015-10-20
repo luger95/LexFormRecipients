@@ -88,7 +88,14 @@ class Recipients extends \Controller
                     continue;
 
                 // Add field to message
-                $message .= (isset($arrLabels[$k]) && $arrLabels[$k] ? $arrLabels[$k] : ucfirst($k)) . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
+                if('destinataire' === $k)
+                {   foreach (unserialize($objFormRecipientsField->options) as $key => $option)
+                        if($option['value'] == $v)
+                            $subjet = $option['label'];
+                }
+                else{
+                    $message .= (isset($arrLabels[$k]) && $arrLabels[$k] ? $arrLabels[$k] : ucfirst($k)) . ': ' . (is_array($v) ? implode(', ', $v) : $v) . "\n";
+                }
 
                 // Prepare XML file
                 if ($objFormRecipientsField->format == 'xml')
@@ -105,13 +112,12 @@ class Recipients extends \Controller
             if (empty($recipients))
                 continue;
 
-            $email = new \Email();
+            $this->import('Email');
+            $email = new \Contao\Email();
 
-            // Get subject and message
-            if ($objFormRecipientsField->format == 'email')
+            if(isset($subjet))
             {
-                $message = $arrData['message'];
-                $email->subject = $arrData['subject'];
+                $email->subject = $subjet;
             }
 
             // Set the admin e-mail as "from" address
@@ -176,11 +182,19 @@ class Recipients extends \Controller
 
             $uploaded = strlen(trim($uploaded)) ? "\n\n---\n" . $uploaded : '';
 
-            if(strpos($recipients[0],',') !== FALSE)
-                $recipients = array_map('trim',explode(',', $recipients[0]));
+            $re = "/^([0-9]+-)/";                
+            $a_recipients = array_map('trim',explode(',', $recipients[0]));
+            foreach ($a_recipients as $key => $recipients_email)
+            {
+                preg_match($re, $recipients_email, $matches);
+                $a_recipients[$key] = trim(str_replace($matches[0], '', $recipients_email));
+            }
+            $recipients = $a_recipients;
+
+            $text = \String::decodeEntities(trim($message)) . $uploaded . "\n\n";
 
             // Send e-mail
-            $email->text = \String::decodeEntities(trim($message)) . $uploaded . "\n\n";
+            $email->text = $text;
             $email->sendTo($recipients);
         }
     }
